@@ -31,7 +31,7 @@ app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
 app.use('/static', express.static(__dirname + '/static'));
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.set('port', (process.env.PORT || 5000));
 
 /*
  Configure nunjucks to work with express
@@ -287,9 +287,9 @@ MongoClient.connect('mongodb://natarajgandhi:voila123@ds017582.mlab.com:17582/sh
     app.use('/', router);
 
     // Start the server listening
-    var server = app.listen(3000, function() {
-        var port = server.address().port;
-        console.log('Mongomart server listening on port %s.', port);
+app.listen(app.get('port'), function() {
+        //var port = server.address().port;
+        console.log('Mongomart server listening on port %s.', app.get('port'));
     });
 
 });
